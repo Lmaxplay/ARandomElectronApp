@@ -1,0 +1,16 @@
+{
+  "name": "arandomelectronapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "tsc -p tsconfig.json && electron src/main.js && exit 1"
+  },
+  "type": "commonjs",
+  "author": "Lmaxplay",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^17.0.21",
+    "electron": "^17.1.0"
+  }
+}

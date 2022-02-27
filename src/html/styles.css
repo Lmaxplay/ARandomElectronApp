@@ -1,0 +1,56 @@
+body {
+  margin: 0px;
+  font-family: sans-serif;
+  font-size: 1.5em;
+}
+
+#titlebar {
+  margin: 0px;
+  padding: 0px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  -webkit-app-region: drag;
+  height: 20px;
+  max-height: 20px;
+  width: 100%;
+  min-width: 100%;
+  position: fixed;
+  background-color: #ddd;
+  border-bottom: 1px solid #bbb;
+}
+
+#content {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 21px;
+  height: calc(100% - 20px);
+  min-height: calc(100% - 20px);
+  width: calc(100% - 6px);
+  max-width: calc(100% - 6px);
+  min-width: calc(100% - 6px);
+}
+
+#close-button-hover,
+#close-button {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  mask: "./icons/icons8-close.svg";
+  margin-top: 0px;
+  transition: 0.3s;
+}
+
+#close-button {
+  margin-top: -20px;
+}
+
+#close-button:hover {
+  opacity: 0%;
+}
+
+#close-button-container {
+  float: right;
+  margin-right: 2px;
+  -webkit-app-region: no-drag;
+}
