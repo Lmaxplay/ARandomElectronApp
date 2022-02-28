@@ -21,17 +21,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path = __importStar(require("path"));
+const process = __importStar(require("node:process"));
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = "true";
 function createWindow(filepath) {
     const newWindow = new electron_1.BrowserWindow({
         height: 600,
         width: 800,
         frame: false,
-        icon: path.join(__dirname, "./html/Lmaxplayface.png")
+        icon: path.join(__dirname, "./html/Lmaxplayface.png"),
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        },
     });
     newWindow.loadFile(path.join(__dirname, filepath));
     newWindow.setMenuBarVisibility(false);
     return newWindow;
 }
+// app.enableSandbox();
 electron_1.app.on("ready", () => {
     const mainWindow = createWindow("./html/index.html");
     mainWindow.webContents.openDevTools();
