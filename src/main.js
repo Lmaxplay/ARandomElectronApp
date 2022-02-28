@@ -33,7 +33,6 @@ function createWindow(filepath, iconpath) {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            preload: path.join(__dirname, "./html/preload.js"),
         },
     });
     newWindow.loadFile(path.join(__dirname, filepath));
@@ -43,7 +42,7 @@ function createWindow(filepath, iconpath) {
 // app.enableSandbox();
 electron_1.app.on("ready", () => {
     mainWindow = createWindow("./html/index.html", "./html/images/Lmaxplayface.png");
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 });
 electron_1.app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
@@ -56,6 +55,9 @@ electron_1.ipcMain.on('minimize', () => {
 electron_1.ipcMain.on('maximize', () => {
     mainWindow.maximize();
 });
-electron_1.ipcMain.on('maximized', () => {
+electron_1.ipcMain.on('restore', () => {
+    mainWindow.restore();
+});
+electron_1.ipcMain.handle('maximized', () => {
     return mainWindow.isMaximized();
 });

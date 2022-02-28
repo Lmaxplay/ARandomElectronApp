@@ -1,3 +1,7 @@
+:root {
+  --titlebar-size: 26px;
+}
+
 body {
   margin: 0px;
   font-family: sans-serif;
@@ -20,8 +24,8 @@ img {
   left: 0px;
   right: 0px;
   -webkit-app-region: drag;
-  height: 20px;
-  max-height: 20px;
+  height: var(--titlebar-size);
+  max-height: var(--titlebar-size);
   width: 100%;
   min-width: 100%;
   position: fixed;
@@ -30,11 +34,11 @@ img {
 }
 
 #content {
-  margin-top: 21px;
+  margin-top: calc(var(--titlebar-size) + 1px);
   margin-left: 3px;
   margin-right: 3px;
-  height: calc(100% - 20px);
-  min-height: calc(100% - 20px);
+  height: calc(100% - var(--titlebar-size));
+  min-height: calc(100% - var(--titlebar-size));
   width: calc(100% - 6px);
   max-width: calc(100% - 6px);
   min-width: calc(100% - 6px);
@@ -44,35 +48,39 @@ img {
   margin-top: 0px !important;
 }
 
-#minimize-button-hover,
 #minimize-button,
-#close-button-hover,
+#maximize-button,
 #close-button {
   display: flex;
-  width: 24px;
-  height: 24px;
-  margin-top: -1px;
-  transition: 0.3s;
+  width: var(--titlebar-size);
+  height: var(--titlebar-size);
+  margin-top: 0px;
+  opacity: 100%;
+  transition: 0.2s;
 }
 
 #minimize-button,
+#maximize-button,
 #close-button {
-  margin-top: -24px;
+  margin-top: calc(var(--titlebar-size) * -1);
 }
 
 #minimize-button:hover,
+#maximize-button:hover,
 #close-button:hover {
-  opacity: 0%;
+  fill: #F00;
 }
 
 #minimize-button-container,
+#maximize-button-container,
 #close-button-container {
   float: right;
   margin-right: 2px;
   -webkit-app-region: no-drag;
 }
 
-#minimize-button-container {
+#minimize-button-container,
+#maximize-button-container {
   margin-right: 0px;
 }
 
@@ -80,17 +88,18 @@ img {
   float: left;
   width: 300px;
   max-width: 300px;
-  height: 20px;
+  height: var(--titlebar-size);
   text-align: center;
-  font-size: 18px;
+  font-size: calc(var(--titlebar-size) * 0.8);
   margin-left: calc(50% - 150px - 25px);
   user-select: none;
+  margin-top: 2px;
 }
 
 #icon {
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: var(--titlebar-size);
+  height: var(--titlebar-size);
   margin-top: 0px;
   transition: 0.3s;
   user-select: none;

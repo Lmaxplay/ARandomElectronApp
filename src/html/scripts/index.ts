@@ -1,12 +1,13 @@
 if (isElectron) {
     // Running on electron
-    document.getElementById("titlebar").classList.add("visible");
+    titlebar.classList.add("visible");
 } else {
     // Not running on electron
-    document.getElementById("content").classList.add("no-titlebar");
-    document.getElementById("titlebar").remove();
+    content.classList.add("no-titlebar");
+    titlebar.remove();
 }
 
 setTitle("Lmaxplay test app");
+setIcon("images/Lmaxplayface.png");
 
 document.body.classList.add("visible");

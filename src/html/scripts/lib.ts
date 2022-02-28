@@ -1,10 +1,21 @@
 const isElectron: boolean = navigator.userAgent.indexOf("Electron") != -1;
+const content = document.getElementById("content");
+const titlebar = document.getElementById("titlebar")
 
 function setTitle(title: string) {
     if (isElectron) {
         document.getElementById("title").innerHTML = title;
     }
     document.getElementById("window-title").innerHTML = title;
+}
+
+function setIcon(iconpath: string) {
+    const path = require("path");
+    if (isElectron) {
+        document.getElementById("icon").setAttribute("src", path.join(iconpath, ""));
+    }
+
+    document.getElementById("browser-icon").setAttribute("href", path.join(iconpath, ""));
 }
 
 function minimize() {
@@ -15,9 +26,22 @@ function maximize() {
     require("electron").ipcRenderer.send('maximize');
 }
 
-function isMaximized(): boolean {
-    // @ts-expect-error
-    return require("electron").ipcRenderer.invoke('maximized');
+async function maximizeswitch() {
+    if(!await isMaximized()) {
+        require("electron").ipcRenderer.send('maximize');
+    } else {
+        require("electron").ipcRenderer.send('restore');
+    }
 }
 
-// void
+function restore() {
+    require("electron").ipcRenderer.send('restore');
+}
+
+function unmaximize() {
+    require("electron").ipcRenderer.send('restore');
+}
+
+function isMaximized(): Promise<boolean> {
+    return require('electron').ipcRenderer.invoke("maximized");
+}

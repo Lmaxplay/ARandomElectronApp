@@ -15,7 +15,6 @@ function createWindow(filepath: string, iconpath: string): BrowserWindow {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            preload: path.join(__dirname, "./html/preload.js"),
         },
     });
 
@@ -30,7 +29,8 @@ function createWindow(filepath: string, iconpath: string): BrowserWindow {
 
 app.on("ready", () => {
     mainWindow = createWindow("./html/index.html", "./html/images/Lmaxplayface.png");
-    mainWindow.webContents.openDevTools();
+
+    // mainWindow.webContents.openDevTools();
 });
 
 app.on("window-all-closed", () => {
@@ -47,6 +47,10 @@ ipcMain.on('maximize', () => {
     mainWindow.maximize();
 })
 
-ipcMain.on('maximized', () => {
+ipcMain.on('restore', () => {
+    mainWindow.restore();
+})
+
+ipcMain.handle('maximized', () => {
     return mainWindow.isMaximized();
 })
