@@ -23,15 +23,17 @@ const electron_1 = require("electron");
 const path = __importStar(require("path"));
 const process = __importStar(require("node:process"));
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = "true";
-function createWindow(filepath) {
+var mainWindow;
+function createWindow(filepath, iconpath) {
     const newWindow = new electron_1.BrowserWindow({
         height: 600,
         width: 800,
         frame: false,
-        icon: path.join(__dirname, "./html/Lmaxplayface.png"),
+        icon: path.join(__dirname, iconpath),
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            preload: path.join(__dirname, "./html/preload.js"),
         },
     });
     newWindow.loadFile(path.join(__dirname, filepath));
@@ -40,11 +42,17 @@ function createWindow(filepath) {
 }
 // app.enableSandbox();
 electron_1.app.on("ready", () => {
-    const mainWindow = createWindow("./html/index.html");
+    mainWindow = createWindow("./html/index.html", "./html/images/Lmaxplayface.png");
     mainWindow.webContents.openDevTools();
 });
 electron_1.app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
         electron_1.app.quit();
     }
+});
+electron_1.ipcMain.on('minimize', () => {
+    mainWindow.minimize();
+});
+electron_1.ipcMain.on('maximize', () => {
+    mainWindow.maximize();
 });

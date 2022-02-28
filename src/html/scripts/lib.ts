@@ -6,3 +6,17 @@ function setTitle(title: string) {
     }
     document.getElementById("window-title").innerHTML = title;
 }
+
+function minimize() {
+    require("electron").ipcRenderer.send('minimize');
+}
+
+function maximize() {
+    require("electron").ipcRenderer.send('maximize');
+}
+
+if(!isElectron) {
+    // @ts-expect-error
+    function require(): Object {
+    }
+}

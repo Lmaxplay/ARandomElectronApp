@@ -1,18 +1,21 @@
-import { app, BrowserWindow, NativeImage } from "electron";
+import { app, BrowserWindow, NativeImage, ipcMain, ipcRenderer, IpcMainEvent } from "electron";
 import * as path from "path";
 import * as process from "node:process";
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = "true";
 
-function createWindow(filepath: string): BrowserWindow {
+var mainWindow: BrowserWindow;
+
+function createWindow(filepath: string, iconpath: string): BrowserWindow {
     const newWindow = new BrowserWindow({
         height: 600,
         width: 800,
         frame: false,
-        icon: path.join(__dirname, "./html/Lmaxplayface.png"),
+        icon: path.join(__dirname, iconpath),
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            preload: path.join(__dirname, "./html/preload.js"),
         },
     });
 
@@ -26,7 +29,7 @@ function createWindow(filepath: string): BrowserWindow {
 // app.enableSandbox();
 
 app.on("ready", () => {
-    const mainWindow = createWindow("./html/index.html");
+    mainWindow = createWindow("./html/index.html", "./html/images/Lmaxplayface.png");
     mainWindow.webContents.openDevTools();
 });
 
@@ -35,3 +38,11 @@ app.on("window-all-closed", () => {
         app.quit();
     }
 });
+
+ipcMain.on('minimize', () => {
+    mainWindow.minimize();
+})
+
+ipcMain.on('maximize', () => {
+    mainWindow.maximize();
+})

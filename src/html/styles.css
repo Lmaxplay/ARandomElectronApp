@@ -5,6 +5,10 @@ body {
   visibility: hidden;
 }
 
+img {
+  user-select: none;
+}
+
 .visible {
   visibility: visible;
 }
@@ -40,6 +44,8 @@ body {
   margin-top: 0px !important;
 }
 
+#minimize-button-hover,
+#minimize-button,
 #close-button-hover,
 #close-button {
   display: flex;
@@ -49,18 +55,25 @@ body {
   transition: 0.3s;
 }
 
+#minimize-button,
 #close-button {
   margin-top: -24px;
 }
 
+#minimize-button:hover,
 #close-button:hover {
   opacity: 0%;
 }
 
+#minimize-button-container,
 #close-button-container {
   float: right;
   margin-right: 2px;
   -webkit-app-region: no-drag;
+}
+
+#minimize-button-container {
+  margin-right: 0px;
 }
 
 #title-container {
