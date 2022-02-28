@@ -56,3 +56,6 @@ electron_1.ipcMain.on('minimize', () => {
 electron_1.ipcMain.on('maximize', () => {
     mainWindow.maximize();
 });
+electron_1.ipcMain.on('maximized', () => {
+    return mainWindow.isMaximized();
+});

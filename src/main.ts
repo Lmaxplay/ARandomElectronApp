@@ -46,3 +46,7 @@ ipcMain.on('minimize', () => {
 ipcMain.on('maximize', () => {
     mainWindow.maximize();
 })
+
+ipcMain.on('maximized', () => {
+    return mainWindow.isMaximized();
+})

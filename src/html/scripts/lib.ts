@@ -15,8 +15,9 @@ function maximize() {
     require("electron").ipcRenderer.send('maximize');
 }
 
-if(!isElectron) {
+function isMaximized(): boolean {
     // @ts-expect-error
-    function require(): Object {
-    }
+    return require("electron").ipcRenderer.invoke('maximized');
 }
+
+// void
