@@ -16,6 +16,8 @@ function createWindow(filepath: string, iconpath: string): BrowserWindow {
             nodeIntegration: true,
             contextIsolation: false,
         },
+        minHeight: 300,
+        minWidth: 400,
     });
 
     newWindow.loadFile(path.join(__dirname, filepath));
@@ -51,6 +53,22 @@ ipcMain.on('restore', () => {
     mainWindow.restore();
 })
 
+ipcMain.on('blur', () => {
+    mainWindow.blur();
+})
+
+ipcMain.on('destroy', () => {
+    mainWindow.destroy();
+})
+
 ipcMain.handle('maximized', () => {
     return mainWindow.isMaximized();
 })
+
+ipcMain.on('hideMenubar', () => {
+    mainWindow.setMenuBarVisibility(false);
+});
+
+ipcMain.on('showMenubar', () => {
+    mainWindow.setMenuBarVisibility(true);
+});

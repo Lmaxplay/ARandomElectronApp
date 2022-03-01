@@ -11,3 +11,5 @@ setTitle("Lmaxplay test app");
 setIcon("images/Lmaxplayface.png");
 
 document.body.classList.add("visible");
+
+showMenubar();

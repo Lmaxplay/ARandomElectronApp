@@ -42,6 +42,14 @@ function unmaximize() {
     require("electron").ipcRenderer.send('restore');
 }
 
+function hideMenubar() {
+    require("electron").ipcRenderer.send('hideMenubar');
+}
+
+function showMenubar() {
+    require("electron").ipcRenderer.send('showMenubar');
+}
+
 function isMaximized(): Promise<boolean> {
     return require('electron').ipcRenderer.invoke("maximized");
 }

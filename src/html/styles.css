@@ -2,6 +2,10 @@
   --titlebar-size: 26px;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   margin: 0px;
   font-family: sans-serif;
@@ -34,7 +38,7 @@ img {
 }
 
 #content {
-  margin-top: calc(var(--titlebar-size) + 1px);
+  /*margin-top: calc(var(--titlebar-size) + 1px);*/
   margin-left: 3px;
   margin-right: 3px;
   height: calc(100% - var(--titlebar-size));
@@ -55,20 +59,16 @@ img {
   width: var(--titlebar-size);
   height: var(--titlebar-size);
   margin-top: 0px;
-  opacity: 100%;
   transition: 0.2s;
 }
 
-#minimize-button,
-#maximize-button,
-#close-button {
-  margin-top: calc(var(--titlebar-size) * -1);
+#minimize-button:hover,
+#maximize-button:hover {
+  fill: #00AAFF !important;
 }
 
-#minimize-button:hover,
-#maximize-button:hover,
 #close-button:hover {
-  fill: #F00;
+  fill: #FF0000 !important;
 }
 
 #minimize-button-container,

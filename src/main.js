@@ -34,6 +34,8 @@ function createWindow(filepath, iconpath) {
             nodeIntegration: true,
             contextIsolation: false,
         },
+        minHeight: 300,
+        minWidth: 400,
     });
     newWindow.loadFile(path.join(__dirname, filepath));
     newWindow.setMenuBarVisibility(false);
@@ -58,6 +60,18 @@ electron_1.ipcMain.on('maximize', () => {
 electron_1.ipcMain.on('restore', () => {
     mainWindow.restore();
 });
+electron_1.ipcMain.on('blur', () => {
+    mainWindow.blur();
+});
+electron_1.ipcMain.on('destroy', () => {
+    mainWindow.destroy();
+});
 electron_1.ipcMain.handle('maximized', () => {
     return mainWindow.isMaximized();
+});
+electron_1.ipcMain.on('hideMenubar', () => {
+    mainWindow.setMenuBarVisibility(false);
+});
+electron_1.ipcMain.on('showMenubar', () => {
+    mainWindow.setMenuBarVisibility(true);
 });
