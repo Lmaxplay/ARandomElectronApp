@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^17.0.21",
-    "electron": "^17.1.0"
+    "electron": "^22.3.5"
   }
 }
